@@ -1,0 +1,16 @@
+Primary source: https://github.com/Project-OSRM/osrm-backend/wiki/Running-OSRM
+With consultancy of Luis Rocha from the chair of management science
+Documentation OSMR docker
+
+1) Install https://docs.docker.com/desktop/windows/wsl/
+2) https://github.com/Project-OSRM/osrm-backend/wiki/Docker-Recipes
+
+wget http://download.geofabrik.de/europe/germany/bayern-latest.osm.pbf
+
+sudo docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-extract -p /opt/car.lua /data/bayern-latest.osm.pbf
+
+sudo docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-partition /data/bayern-latest.osrm
+sudo docker run -t -v "${PWD}:/data" osrm/osrm-backend osrm-customize /data/bayern-latest.osrm
+
+#start docker container
+sudo docker run -t -i -p 5000:5000 -v "${PWD}:/data" osrm/osrm-backend osrm-routed --max-table-size=600 --algorithm mld /data/bayern-latest.osrm
