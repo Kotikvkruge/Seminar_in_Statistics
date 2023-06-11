@@ -1,4 +1,4 @@
-# Seminar_in_Statistics
+# Seminar in Statistics
 Code and documentation for the seminar thesis in statistics (SoSe 23).
 
 **Order of execution:**
